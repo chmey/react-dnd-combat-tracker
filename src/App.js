@@ -24,6 +24,15 @@ function App() {
     console.log(characters);
   }
 
+  const handleImport = (e) => {
+    try {
+      const b = new Blob(e.target.files, {type: 'application/json'});
+      b.text().then(t => setCharacters(JSON.parse(t)));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
     <div className="App">
       <Container>
@@ -36,6 +45,28 @@ function App() {
             <AddCharForm addCharacter={addCharacter}></AddCharForm>
             : <Button variant="contained" color="primary" onClick={_ => setIsFormVisible(true)}>Add Character</Button>
         }
+        </Box>
+        <Box mt={3}>
+          <Button color="primary" href={
+            `data:text/json;charset=utf-8,${encodeURIComponent(
+              JSON.stringify(characters)
+            )}`
+          }
+          download="dnd_combat.json">
+            Export
+          </Button>
+          <Button
+            color="secondary"
+            component="label"
+          >
+            Import
+            <input
+              onChange={handleImport}
+              accept="application/json"
+              type="file"
+              hidden
+            />
+          </Button>
         </Box>
       </Container>
     </div>

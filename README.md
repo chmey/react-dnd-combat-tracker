@@ -12,6 +12,7 @@ Simple purely client-side React MaterialUI combat tracker for Dungeons & Dragons
 * Apply damage by entering a negative value to the HP field (e.g. `-6`)
 * (Experimental) Spellslots as free-syntax JSON input (e.g. `{"level1": 2, "level2": 1}`)
 * Concentration
+* Export/Import
 
 
 ### Coming features:
