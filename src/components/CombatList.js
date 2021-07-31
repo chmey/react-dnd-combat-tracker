@@ -12,6 +12,7 @@ const CombatList = ({characters, updateCharacter}) => {
                         <TableCell align="right">HP</TableCell>
                         <TableCell align="right">MAX HP</TableCell>
                         <TableCell align="right">AC</TableCell>
+                        <TableCell align="right">Spellslots</TableCell>
                         <TableCell align="right">INI</TableCell>
                     </TableRow>
                 </TableHead>

@@ -9,6 +9,7 @@ function App() {
   const [isFormVisible, setIsFormVisible] = useState(false);
  
   const addCharacter = (char) => {
+    char.spellSlots = {};
     setCharacters([...characters, char]);
     setIsFormVisible(false);
   }

@@ -6,18 +6,18 @@ Simple purely client-side React MaterialUI combat tracker for Dungeons & Dragons
 
 
 ### Features:
-* Add any number of Character (Name, HP, MaxHP, AC, Initiative)
-* Roll Initivative
+* Add any number of characters (Name, HP, MaxHP, AC, Initiative)
+* Roll initiative
 * Edit all fields by clicking on them
 * Apply damage by entering a negative value to the HP field (e.g. `-6`)
+* (Experimental) Spellslots as free-syntax JSON input (e.g. `{"level1": 2, "level2": 1}`)
 
 
 ### Coming features:
 * Resistances/Immunities
 * Concentration
 * Sorting
-* Export/Import (for local storage)
-* Duplicating Characters
+* Duplicating characters
 * Temporary HP
 * Spell slots
 * Highlighting of injured characters

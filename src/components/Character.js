@@ -9,6 +9,7 @@ const Character = ({char, idx, updateCharacter}) => {
     const [isVisHPField, setIsVisHPField] = useState(false);
     const [isVisMaxHPField, setIsVisMaxHPField] = useState(false);
     const [isVisACField, setIsVisACField] = useState(false);
+    const [isVisSpellField, setIsVisSpellField] = useState(false);
     const [isVisIniField, setisVisIniField] = useState(false);
 
     const [changedChar, setChangedChar] = useState(char);
@@ -20,6 +21,7 @@ const Character = ({char, idx, updateCharacter}) => {
         setIsVisMaxHPField(false);
         setIsVisACField(false);
         setisVisIniField(false);
+        setIsVisSpellField(false);
         updateCharacter(changedChar);
     }
 
@@ -38,6 +40,7 @@ const Character = ({char, idx, updateCharacter}) => {
             setChangedChar({...changedChar, hp: val});
     }
 
+    const updateSpells = (val) => {
 
     return (
         <TableRow key={`char-${idx}`}>
@@ -94,6 +97,22 @@ const Character = ({char, idx, updateCharacter}) => {
                     />
                     : <Typography onClick={_ => setIsVisACField(true)} variant="inherit">{changedChar.ac ? changedChar.ac : "???"}</Typography>
                 
+                }
+            </TableCell>
+            <TableCell align="right">
+                {
+                    isVisSpellField ?
+                    <TextField
+                         multiline
+                        onBlur={e => {updateSpells(e.target.value); handleChange()}}
+                        placeholder='{"level1": 2, "level2":1}'
+                        defaultValue={JSON.stringify(changedChar.spellSlots)}
+                        autoFocus
+                    />
+                    : <Typography onClick={_ => setIsVisSpellField(true)} variant="inherit">{Object.keys(changedChar.spellSlots).length > 0 ? JSON.stringify(changedChar.spellSlots) : "-----"}</Typography>
+                
+                }
+            </TableCell>
                 }
             </TableCell>
             <TableCell align="right">
