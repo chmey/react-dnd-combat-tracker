@@ -1,10 +1,10 @@
-import { Button, TextField, TableRow, TableCell, Typography } from '@material-ui/core';
+import { Button, Checkbox, TextField, TableRow, TableCell, Typography } from '@material-ui/core';
 import { useState } from 'react';
 import { rollDice } from '../util/dice';
 
 
 
-const Character = ({char, idx, updateCharacter}) => {
+const Character = ({char, updateCharacter}) => {
     const [isVisNameField, setisVisNameField] = useState(false);
     const [isVisHPField, setIsVisHPField] = useState(false);
     const [isVisMaxHPField, setIsVisMaxHPField] = useState(false);
@@ -41,9 +41,15 @@ const Character = ({char, idx, updateCharacter}) => {
     }
 
     const updateSpells = (val) => {
+        try {
+            setChangedChar({...changedChar, spellSlots: JSON.parse(val)});
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
-        <TableRow key={`char-${idx}`}>
+        <TableRow>
             <TableCell component="th" scope="row">
             {
                     isVisNameField ?
@@ -113,6 +119,14 @@ const Character = ({char, idx, updateCharacter}) => {
                 
                 }
             </TableCell>
+            <TableCell align="right">
+                {
+                    <Checkbox
+                        checked={changedChar.concentrated}
+                        onChange={e => {setChangedChar({...changedChar, concentrated: !changedChar.concentrated}); handleChange()}}
+                        color="primary"
+                    />
+                
                 }
             </TableCell>
             <TableCell align="right">
