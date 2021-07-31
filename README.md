@@ -14,9 +14,9 @@ Simple purely client-side React MaterialUI combat tracker for Dungeons & Dragons
 * Concentration
 * Export/Import
 * Duplicating and deleting characters
+* Temporary HP (will be deducted first if damage entered as above)
 
 ### Coming features:
 * Resistances/Immunities
 * Sorting
-* Temporary HP
 * Highlighting of injured characters

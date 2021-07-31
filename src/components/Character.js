@@ -32,10 +32,21 @@ const Character = ({char, updateCharacter, removeCharacter, addCharacter}) => {
     }
 
     const updateHP = (val) => {
-        if (val < 0)
+        const valInt = parseInt(val);
+        if (valInt < 0)
+        {
             // if negative value entered:
             // assume to reduce hp by damage taken
-            setChangedChar({...changedChar, hp: changedChar.hp+parseInt(val)});
+            const temp_hp = changedChar.tempHP;
+            let remainder = Math.abs(valInt);
+            if (remainder > temp_hp)
+            {
+                remainder -= temp_hp;
+                setChangedChar({...changedChar, tempHP: 0, hp: changedChar.hp-remainder});
+            } else {
+                setChangedChar({...changedChar, tempHP: temp_hp-remainder});
+            }
+        }
         else
             setChangedChar({...changedChar, hp: val});
     }
@@ -66,14 +77,23 @@ const Character = ({char, updateCharacter, removeCharacter, addCharacter}) => {
             <TableCell align="right">
                 {
                     isVisHPField ?
-                    <TextField
-                        onBlur={e => {updateHP(e.target.value); handleChange()}}
-                        type="number"
-                        placeholder="Current HP"
-                        defaultValue={changedChar.hp}
-                        autoFocus
-                    />
-                    : <Typography onClick={_ => setIsVisHPField(true)} variant="inherit">{changedChar.hp ? changedChar.hp : "???"}</Typography>
+                    (
+                        <div>
+                            <TextField
+                                onBlur={e => {updateHP(e.target.value); handleChange()}}
+                                type="number"
+                                placeholder="Current HP"
+                                defaultValue={changedChar.hp}
+                            />
+                            <TextField
+                                onBlur={e => {setChangedChar({...changedChar, tempHP: parseInt(e.target.value)}); handleChange()}}
+                                type="number"
+                                placeholder="Temp HP"
+                                defaultValue={changedChar.tempHP}
+                            />
+                        </div>
+                    )
+                    : <Typography onClick={_ => setIsVisHPField(true)} variant="inherit">{changedChar.hp ? `${changedChar.hp} (+${changedChar.tempHP ? changedChar.tempHP : 0})`  : "???"}</Typography>
                 
                 }
             </TableCell>

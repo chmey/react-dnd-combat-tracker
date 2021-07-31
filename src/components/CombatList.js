@@ -9,7 +9,7 @@ const CombatList = ({characters, updateCharacter, removeCharacter, addCharacter}
                 <TableHead>
                     <TableRow>
                         <TableCell>Name</TableCell>
-                        <TableCell align="right">HP</TableCell>
+                        <TableCell align="right">HP (+TEMP)</TableCell>
                         <TableCell align="right">MAX HP</TableCell>
                         <TableCell align="right">AC</TableCell>
                         <TableCell align="right">Spellslots</TableCell>
