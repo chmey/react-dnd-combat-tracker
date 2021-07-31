@@ -1,7 +1,7 @@
 import { TableContainer, Table, Paper, TableHead, TableRow, TableCell, TableBody } from '@material-ui/core';
 import Character from './Character';
 
-const CombatList = ({characters, updateCharacter}) => {
+const CombatList = ({characters, updateCharacter, removeCharacter, addCharacter}) => {
 
     return (
         <TableContainer component={Paper}>
@@ -15,13 +15,14 @@ const CombatList = ({characters, updateCharacter}) => {
                         <TableCell align="right">Spellslots</TableCell>
                         <TableCell align="right">Concentrated</TableCell>
                         <TableCell align="right">INI</TableCell>
+                        <TableCell align="right"></TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
                 {
                     characters ? 
                     characters.map(char => {
-                    return <Character key={`char-${char.id}`} updateCharacter={updateCharacter} char={char} />
+                    return <Character key={`char-${char.id}`} addCharacter={addCharacter} removeCharacter={removeCharacter} updateCharacter={updateCharacter} char={char} />
                     })
                     : null
                 }

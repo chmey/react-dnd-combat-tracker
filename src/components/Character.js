@@ -1,10 +1,10 @@
-import { Button, Checkbox, TextField, TableRow, TableCell, Typography } from '@material-ui/core';
+import { Button, Checkbox, TextField, TableRow, TableCell, Typography, IconButton} from '@material-ui/core';
 import { useState } from 'react';
 import { rollDice } from '../util/dice';
+import {Delete, FileCopy} from '@material-ui/icons';
 
 
-
-const Character = ({char, updateCharacter}) => {
+const Character = ({char, updateCharacter, removeCharacter, addCharacter}) => {
     const [isVisNameField, setisVisNameField] = useState(false);
     const [isVisHPField, setIsVisHPField] = useState(false);
     const [isVisMaxHPField, setIsVisMaxHPField] = useState(false);
@@ -143,6 +143,10 @@ const Character = ({char, updateCharacter}) => {
                         : <Typography onClick={_ => setisVisIniField(true)} variant="inherit">{changedChar.initiative}</Typography>
                     : <Button variant="contained" onClick={_ => rollInitiative()} color="primary">Roll</Button>}
                 </TableCell>
+            <TableCell align="right">
+            <IconButton size="small" variant="contained" onClick={_ => removeCharacter(changedChar)} color="secondary"><Delete/></IconButton>
+            <IconButton size="small" variant="contained" onClick={_ => addCharacter(changedChar)} color="primary"><FileCopy/></IconButton>
+            </TableCell>
         </TableRow>
     )
 };

@@ -10,10 +10,18 @@ function App() {
   const [isFormVisible, setIsFormVisible] = useState(false);
  
   const addCharacter = (char) => {
-    char.id = short.generate();
-    char.spellSlots = {};
-    setCharacters([...characters, char]);
+    const newChar = {...char};
+    newChar.id = short.generate();
+    newChar.spellSlots = {};
+    setCharacters([...characters, newChar]);
     setIsFormVisible(false);
+  }
+
+  const removeCharacter = (char) => {
+    const otherCharacters = characters.filter(el => {
+      return el.id !== char.id
+    });
+    setCharacters([...otherCharacters]);
   }
 
   const updateCharacter = (char) => {
@@ -21,7 +29,6 @@ function App() {
       return el.id !== char.id
     });
     setCharacters([...otherCharacters, char]);
-    console.log(characters);
   }
 
   const handleImport = (e) => {
@@ -37,7 +44,7 @@ function App() {
     <div className="App">
       <Container>
         <Box mt={3}>
-          <CombatList updateCharacter={updateCharacter} characters={characters}></CombatList>
+          <CombatList removeCharacter={removeCharacter} addCharacter={addCharacter} updateCharacter={updateCharacter} characters={characters}></CombatList>
         </Box>
         <Box mt={3}>
         {

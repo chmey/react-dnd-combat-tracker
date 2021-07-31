@@ -13,11 +13,10 @@ Simple purely client-side React MaterialUI combat tracker for Dungeons & Dragons
 * (Experimental) Spellslots as free-syntax JSON input (e.g. `{"level1": 2, "level2": 1}`)
 * Concentration
 * Export/Import
-
+* Duplicating and deleting characters
 
 ### Coming features:
 * Resistances/Immunities
 * Sorting
-* Duplicating characters
 * Temporary HP
 * Highlighting of injured characters
